@@ -1,3 +1,4 @@
+import { useGerarUUID } from "../../../utils/useGerarUUID";
 import "./styleForm.css";
 export default function Form({
   toDoList,
@@ -9,6 +10,7 @@ export default function Form({
   tipoValor,
   setTipoValor,
 }) {
+  const  gerarId = useGerarUUID()
   function verificacao(e) {
     e.preventDefault();
     if (valorInput !== "" && valorDinheiro !== "" && tipoValor !== "") {
@@ -18,6 +20,7 @@ export default function Form({
 
   function ReceberValorForm() {
     const novoObjeto = {
+      id: gerarId(),
       description: valorInput,
       type: tipoValor,
       value:

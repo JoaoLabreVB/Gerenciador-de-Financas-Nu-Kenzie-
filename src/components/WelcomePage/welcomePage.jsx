@@ -1,13 +1,18 @@
-import "./styleWelcomePage.css";
+import { useAuth } from "../../contexts/AuthContext";
+import './styleWelcomePage.css';  // Ou o nome exato do seu arquivo CSS
 
-export default function WelcomePage({ setLogin }) {
-  function LoginTrue() {
-    setLogin(true);
-  }
+export default function WelcomePage() {
+  const { login } = useAuth();
+
+  const handleLogin = async () => {
+    const result = await login('test@example.com', 'password123');
+    if (!result.success) {
+      alert(result.error || 'Login failed');
+    }
+  };
 
   return (
-    <>
-      <main className="HomePage">
+     <main className="HomePage">
         <aside>
           <div className="conteudos">
             <img
@@ -17,7 +22,7 @@ export default function WelcomePage({ setLogin }) {
             />
             <h1>Centralize o controle das suas finanças</h1>
             <p className="bordao">de forma rápida e segura</p>
-            <button className="button" onClick={() => LoginTrue()}>
+            <button className="button" onClick={() => handleLogin()}>
               Iniciar
             </button>
           </div>
@@ -30,6 +35,6 @@ export default function WelcomePage({ setLogin }) {
           </div>
         </aside>
       </main>
-    </>
+   
   );
 }

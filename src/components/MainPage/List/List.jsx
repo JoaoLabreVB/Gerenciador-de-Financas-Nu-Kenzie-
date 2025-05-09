@@ -1,4 +1,4 @@
-import Card from "../Card/card";
+import Card from "../Card/Card";
 import "./styleList.css";
 export default function List({
   listFilter,

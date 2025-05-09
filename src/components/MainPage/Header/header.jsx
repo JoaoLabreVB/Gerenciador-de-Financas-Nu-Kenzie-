@@ -1,8 +1,11 @@
+import { useAuth } from "../../../contexts/AuthContext";
 import "./styleHeader.css";
 
-export default function Header({ setLogin }) {
+export default function Header() {
+    const { logout } = useAuth();
+  
   function backToWelcomePage() {
-    setLogin(false);
+    logout();
   }
   return (
     <>

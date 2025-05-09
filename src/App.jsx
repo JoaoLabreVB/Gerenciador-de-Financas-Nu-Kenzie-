@@ -1,21 +1,22 @@
 import "./App.css";
-import { useState } from "react";
-import WelcomePage from "./components/WelcomePage/welcomePage";
-import MainPage from "./components/MainPage/mainPage";
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import WelcomePage from "./components/WelcomePage/WelcomePage";
+import MainPage from "./components/MainPage/MainPage";
 
-function App() {
-  const [Login, setLogin] = useState(false);
+function AppContent() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="container">
-      <div>
-        {Login ? (
-          <MainPage setLogin={setLogin} />
-        ) : (
-          <WelcomePage setLogin={setLogin} />
-        )}
-      </div>
+      {isAuthenticated ? <MainPage /> : <WelcomePage />}
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
