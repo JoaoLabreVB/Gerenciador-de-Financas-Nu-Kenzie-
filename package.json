@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "concurrently \"yarn:start:backend\" \"yarn:start:frontend\"",
+    "start:backend": "cd backend && yarn start",
+    "start:frontend": "cd frontend && yarn start",
+    "install:all": "yarn workspace backend install && yarn workspace frontend install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "proxy": "http://localhost:3001" 
+}
