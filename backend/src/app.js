@@ -1,10 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import authRoutes from './routes/auth.js';
-import taskRoutes from './routes/tasks.js';
-import './config/db.js'; // Inicializa o mock do banco
+import authRoutes from './controllers/auth.js'
+import taskRoutes from './middlewares/tasks.js'
+import connectDB from './config/db.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
+//Conectar MONGODB
+connectDB();
 
 // Middlewares
 app.use(cors());
@@ -12,7 +17,7 @@ app.use(express.json());
 
 // Rotas
 app.use('/auth', authRoutes);
-app.use('/tasks', taskRoutes);
+app.use('/api/tasks', taskRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
